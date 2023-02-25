@@ -1,0 +1,83 @@
+
+
+The stack for a application that can automatically deploy a fully provisioned honey pot is as follows: 
+
+1. Application Server: A web application server such as Apache Tomcat or Microsoft IIS will be required to host the application. 
+
+2. Operating System: The application will need to be installed on an operating system such as Linux or Windows. The operating system should be configured to provide a secure environment and the latest security patches should be applied.
+
+3. Database: A database such as MySQL or PostgreSQL will be required to store the honey pot data.
+
+4. Web Server: A web server such as Apache or Nginx will be needed to serve web pages to visitors.
+
+5. Network Infrastructure: The honey pot will need to be connected to the internet via a secure network infrastructure such as a VPN or a dedicated server. This will ensure that all traffic to and from the honey pot is encrypted.
+
+6. Monitoring: In order to detect suspicious activity, the honey pot will need to be monitored. This can be done using a variety of tools such as log analyzers, intrusion detection systems, and network traffic analyzers.
+
+7. Camouflage: In order to hide the true nature of the honey pot, the application must be configured to simulate a real website with assets in storage, infrastructure, software, and operating systems and subsystems. This will make it difficult for attackers to detect the honey pot.
+
+8. Automation: The application must be able to be deployed and configured automatically using an automation tool such as Chef or Puppet. This will ensure that the honey pot is always up to date and secure.
+
+write the Python3 source code for a Windows 10 Pro version.
+
+This code example is written in Python 3 and will create a Windows 10 Pro version of the honeypot application:
+
+# Import modules
+import os
+import shutil
+
+# Define source directories
+src_os = "C:\\src\\os"
+src_app = "C:\\src\\app"
+src_db = "C:\\src\\db"
+
+# Define destination directories
+dst_os = "C:\\Program Files\\Windows 10 Pro\\"
+dst_app = "C:\\Program Files\\Windows 10 Pro\\app\\"
+dst_db = "C:\\Program Files\\Windows 10 Pro\\db\\"
+
+# Copy the OS files
+shutil.copytree(src_os, dst_os)
+
+# Copy the application files
+shutil.copytree(src_app, dst_app)
+
+# Copy the DB files
+shutil.copytree(src_db, dst_db)
+
+# Install the application
+os.system("C:\\Program Files\\Windows 10 Pro\\app\\install.exe")
+
+# Configure the honeypot
+os.system("C:\\Program Files\\Windows 10 Pro\\app\\configure.exe")
+
+# Install and configure monitoring
+os.system("C:\\Program Files\\Windows 10 Pro\\app\\monitor.exe")
+
+# Install and configure camouflage
+os.system("C:\\Program Files\\Windows 10 Pro\\app\\camouflage.exe")
+
+# Install and configure automation
+os.system("C:\\Program Files\\Windows 10 Pro\\app\\automation.exe")
+
+Write the readme.txt and developer notes
+
+README.txt
+
+This application is designed to automatically deploy a fully provisioned honey pot. It will install the necessary operating system, application, and database files in order to create the honey pot. It will also configure the honey pot in order to hide its true nature, monitor for suspicious activity, and automate deployment and configuration.
+
+Developer Notes
+
+This application is written in Python 3 and is designed to run on Windows 10 Pro. In order to install the application, the necessary source files must be located in the following directories:
+
+- Operating System: C:\\src\\os
+- Application: C:\\src\\app
+- Database: C:\\src\\db
+
+Once the source files are in place, the application can be run by executing the following commands:
+
+- Install application: C:\\Program Files\\Windows 10 Pro\\app\\install.exe
+- Configure honeypot: C:\\Program Files\\Windows 10 Pro\\app\\configure.exe
+- Monitor honeypot: C:\\Program Files\\Windows 10 Pro\\app\\monitor.exe
+- Camouflage honeypot: C:\\Program Files\\Windows 10 Pro\\app\\camouflage.exe
+- Automate deployment & configuration: C:\\Program Files\\Windows 10 Pro\\app\\automation.exe
