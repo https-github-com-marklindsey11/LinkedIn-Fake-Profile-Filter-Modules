@@ -1,0 +1,30 @@
+1. Conceptual software architecture:
+
+A. High-level overview: 
+The architecture consists of four main components:
+-Data Gathering: This component gathers data from the root domain tree's leaf-nodes, using a combination of active and passive scanning methods. This data can then be used to identify any mismatches in SSL certificates or other inconsistencies that may indicate an illicit network.
+
+-Data Storage: This component stores the gathered data in a secure database for further analysis.
+
+-Data Analysis: This component analyzes the gathered data in order to identify any inconsistencies or anomalies that may indicate an illicit network.
+
+-Reporting: This component generates reports based on the analysis that can be used to trace the source of the illicit networks and take action against them.
+
+B. Technologies:
+The architecture will be implemented using the following technologies:
+-Active scanning: Nmap, Zmap, and Scapy can be used to actively scan the root domain tree's leaf-nodes.
+-Passive scanning: Passive scanning can be done using DNS and IP flow monitoring tools such as Argus, Bro, and Suricata.
+-Data Storage: A secure database such as MongoDB can be used to store the gathered data.
+-Data Analysis: Data analysis can be done using machine learning algorithms such as K-means clustering and Random Forest.
+-Reporting: Reports can be generated using reporting tools such as Tableau and Qlikview.
+
+2. TLD .ru root zone configuration:
+
+A. DNS Server: 
+The architecture will use a DNS server to map the root domain tree's leaf-nodes to their corresponding IP addresses. This will allow the data gathering component to identify and scan all the leaf-nodes.
+
+B. SSL Certificate Verification: 
+The architecture will use a certificate verification tool such as OpenSSL to verify the SSL certificates of the leaf-nodes. This will allow the data analysis component to identify any mismatches or inconsistencies in the certificates that may indicate an illicit network.
+
+C. Network Abstraction: 
+The architecture will use a network abstraction tool such as NetworkX to map the root domain tree's leaf-nodes through all layers of network abstraction. This will allow the data gathering component to discover all the leaf-nodes in the root domain tree.
