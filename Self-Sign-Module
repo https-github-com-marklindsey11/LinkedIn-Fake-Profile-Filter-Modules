@@ -1,0 +1,71 @@
+
+
+# Readme 
+This program is designed to crawl, scrape, and scan the internet for domains and subdomains that have self-signed Certificate Authorities (CAs) and mismatched SSL certificates. The program will extract the domain and subdomain names from the webpage content and print them to the console. 
+
+# Developer Notes 
+This program is written in Python 3 and uses the requests and Beautiful Soup packages. The program defines a function that takes a URL as an argument and obtains the webpage content. The content is then parsed using Beautiful Soup and all self-signed CAs and mismatched SSL certificates are extracted. The domain and subdomain names are then extracted using regular expressions and printed to the console.
+
+
+# import the necessary packages 
+import requests 
+from bs4 import BeautifulSoup 
+import ssl 
+import re 
+
+# define a function to crawl, scrape, and scan the internet for domains and subdomains 
+def crawl_internet(url): 
+	
+	# obtain the webpage content
+	page = requests.get(url) 
+	soup = BeautifulSoup(page.content, 'html.parser') 
+
+	# find all self-signed CAs and mismatched SSL certificates 
+	self_signed_ca = soup.find_all(attrs={'class':'self-signed-ca'}) 
+	mismatched_ssl = soup.find_all(attrs={'class':'mismatched-ssl'}) 
+
+	# loop through the self-signed CAs 
+	for ca in self_signed_ca: 
+		# extract the domain name 
+		domain_name = re.search(r'(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}', ca.text).group() 
+
+		# print the domain name 
+		print('Domain Name:', domain_name) 
+
+	# loop through the mismatched SSL certificates 
+	for ssl in mismatched_ssl: 
+		# extract the subdomain name 
+		subdomain_name = re.search(r'(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}', ssl.text).group() 
+
+		# print the subdomain name 
+		print('Subdomain Name:', subdomain_name) 
+
+# call the function 
+crawl_internet('https://example.com')
+
+A suspicious packet sniffer is a type of software program or device that is used to intercept and monitor data packets sent over a network. Packet sniffers are commonly used by cybercriminals to intercept sensitive data, such as passwords, credit card numbers, and personal information. By monitoring the data packets, the cybercriminal can gain access to the data and use it for malicious purposes.
+
+The most common way to detect a suspicious packet sniffer is to monitor the network for unusual traffic. If there is an unexpected increase in traffic, or if the traffic is coming from an unknown source, then this could be an indication that a packet sniffer is present. Additionally, network administrators can use network security tools such as antivirus software, firewalls, and intrusion detection systems to detect and prevent malicious activity.
+
+A scanner can be used to discover suspicious packet sniffers in the wild. Network scanners can be used to detect and identify devices connected to the network, including packet sniffers. The scanner can then be used to analyze the network traffic and identify any suspicious activity. Additionally, the scanner can be used to detect any unauthorized access to the network, which could indicate the presence of a packet sniffer.
+
+
+It is possible to passively listen for anomalies associated with packet sniffers by scanning the internet externally. Network-based intrusion detection systems can be used to monitor the internet for suspicious activity such as port scans and suspicious traffic patterns. Additionally, by monitoring the traffic patterns and looking for anomalies, it is possible to detect malicious activity such as packet sniffing.
+
+
+A packet sniffer can be considered suspicious if it is used for malicious purposes. For example, if the packet sniffer is used to intercept sensitive data, such as passwords or credit card numbers, then this could be considered suspicious. Additionally, if the packet sniffer is used to gain unauthorized access to a network or to monitor the activity of a user, then this could also be considered suspicious.
+
+Some of the specific indicators that can be used to identify suspicious packet sniffers include: 
+- Unusual network traffic patterns
+- Unexpected increase in traffic
+- Traffic from unknown sources
+- Unauthorized access to the network
+- Scanning of ports
+- Monitoring of user activity
+
+Intrusion detection software can detect port scanning by analyzing the network traffic and looking for specific patterns. For example, if the same port is accessed multiple times within a short period of time, or if multiple ports are accessed in a sequential order, then this could be an indication of a port scan. Additionally, if the same IP address is repeatedly attempting to access the same port, then this could also be an indication of a port scan.
+
+
+A root TLD server CA does not certify the configuration of the DNS zone file. The root TLD server CA is responsible for issuing digital certificates to root TLD servers, which are used to secure communications between servers on the internet. The configuration of the DNS zone file is managed by the domain owner and is not certified by the root TLD server CA.Whyy would Russia self sign the CA for the TLD .ru?
+
+Russia self-signed the CA for the TLD .ru in order to secure communications between servers on the internet. By self-signing the CA, Russia is able to control the issuing of digital certificates to root TLD servers, which ensures that only authorized servers can communicate with each other. This helps to protect the privacy and security of data as it is transmitted over the internet. hidden domains and subdomains?
