@@ -1,0 +1,47 @@
+This code will automate the process of replacing the letters in a document with another letter or symbol, and returning it to original text afterwards. It will use a key to determine which letter should be replaced by which.
+
+// Create a string to store the original text
+String originalText;
+
+// Create a string to store the encrypted text
+String encryptedText;
+
+// Create a string to store the key
+String key;
+
+// Get the original text
+System.out.println("Enter the original text: ");
+originalText = in.nextLine();
+
+// Get the key
+System.out.println("Enter the key: ");
+key = in.nextLine();
+
+// Encrypt the text
+for (int i = 0; i < originalText.length(); i++) {
+  char currentChar = originalText.charAt(i);
+  int index = key.indexOf(currentChar);
+  if (index >= 0) {
+    encryptedText += key.charAt((index + 1) % key.length());
+  } else {
+    encryptedText += currentChar;
+  }
+}
+
+// Print the encrypted text
+System.out.println("Encrypted text: " + encryptedText);
+
+// Decrypt the text
+String decryptedText = "";
+for (int i = 0; i < encryptedText.length(); i++) {
+  char currentChar = encryptedText.charAt(i);
+  int index = key.indexOf(currentChar);
+  if (index >= 0) {
+    decryptedText += key.charAt((index - 1 + key.length()) % key.length());
+  } else {
+    decryptedText += currentChar;
+  }
+}
+
+// Print the decrypted text
+System.out.println("Decrypted text: " + decryptedText);
