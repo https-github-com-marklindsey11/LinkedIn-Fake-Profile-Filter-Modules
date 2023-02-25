@@ -1,0 +1,62 @@
+import bcrypt
+import oauth2
+from sqlalchemy import create_engine
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def authenticate(username, password):
+    # hash the password
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+    # authenticate user
+    try:
+        # connect to database
+        engine = create_engine('postgresql://username:password@host:port/database')
+
+        # query database for user
+        query = "SELECT * FROM users WHERE username = %s AND password = %s"
+        result = engine.execute(query, (username, hashed_password))
+
+        if result.fetchone():
+            return True
+        else:
+            return False
+    except:
+        return False
+
+Java
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.log4j.Logger;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+public boolean authenticate(String username, String password) {
+    try {
+        // hash the password
+        String hashedPassword = StringUtils.hash(password);
+
+        // authenticate user
+        DataSource dataSource = new DataSource();
+        dataSource.setUrl("jdbc:postgresql://host:port/database");
+
+        // query database for user
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(query);
+        statement.setString(1, username);
+        statement.setString(2, hashedPassword);
+        ResultSet result = statement.executeQuery();
+
+        if (result.next()) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (Exception e) {
+        Logger.getLogger(getClass()).error(e.getMessage());
+        return false;
+    }
+}
