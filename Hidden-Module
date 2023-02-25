@@ -1,0 +1,32 @@
+import requests 
+import re
+import os
+
+# Get the current working directory
+cwd = os.getcwd()
+
+# Create a directory to store the proxy lists
+proxy_dir = os.path.join(cwd, 'proxy_lists')
+if not os.path.exists(proxy_dir):
+    os.makedirs(proxy_dir)
+
+# Get the list of transparent proxies
+proxies_list = requests.get('https://www.sslproxies.org/').text 
+proxies = re.findall(r'<td>(\d+.\d+.\d+.\d+)</td><td>(\d+)</td>', proxies_list)
+
+# Write the list of proxies to a file
+with open(os.path.join(proxy_dir, 'transparent_proxies.txt'), 'w') as prox_file:
+    for proxy in proxies:
+        prox_file.write('{}:{}\n'.format(proxy[0], proxy[1]))
+
+# Read the list of proxies and make a request to each proxy
+for proxy in proxies:
+    # Get the current proxy
+    curr_proxy = requests.get('http://{}:{}'.format(proxy[0], proxy[1]))
+    
+    # Make a request to a domain that is engaged in illicit financial transactions
+    illicit_domain_request = requests.get('http://illicit-domain.com', proxies={'http': curr_proxy, 'https': curr_proxy})
+    
+    # Check for hidden domains
+    if 'hidden-domain.com' in illicit_domain_request.text:
+        print('Hidden domain found at {}:{}'.format(proxy[0], proxy[1]))
