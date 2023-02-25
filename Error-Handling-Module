@@ -1,0 +1,56 @@
+int main(int argc, char* argv[])
+{
+    // Input validation and error handling
+    if (argc != 4) {
+        std::cout << "Usage: " << argv[0] << " <input_file> <output_file> <encrypt/decrypt>" << std::endl;
+        return 1;
+    }
+    std::string in_file_path = argv[1];
+    std::string out_file_path = argv[2];
+    std::string action = argv[3];
+    if (action != "encrypt" && action != "decrypt") {
+        std::cout << "Invalid action. Use 'encrypt' or 'decrypt'" << std::endl;
+        return 2;
+    }
+
+    // Open input file
+    std::ifstream in_file(in_file_path, std::ios::binary);
+    if (!in_file.is_open()) {
+        std::cout << "Error: Could not open input file: " << in_file_path << std::endl;
+        return 3;
+    }
+    std::string data((std::istreambuf_iterator<char>(in_file)),
+                     std::istreambuf_iterator<char>());
+    in_file.close();
+
+    // Generate key and iv
+    unsigned char key_data[AES_BLOCK_SIZE];
+    unsigned char iv_data[AES_BLOCK_SIZE];
+    if (!RAND_bytes(key_data, AES_BLOCK_SIZE) || !RAND_bytes(iv_data, AES_BLOCK_SIZE)) {
+        std::cout << "Error: Could not generate secure key and iv" << std::endl;
+        return 4;
+    }
+
+    std::string key((char*)key_data, AES_BLOCK_SIZE);
+    std::string iv((char*)iv_data, AES_BLOCK_SIZE);
+
+    // Perform the selected action
+    std::string out_data;
+    if (action == "encrypt") {
+        out_data = encrypt(data, key, iv);
+    } else {
+        out_data = decrypt(data, key, iv);
+    }
+
+    // Open output file
+    std::ofstream out_file(out_file_path, std::ios::binary);
+    if (!out_file.is_open()) {
+        std::cout << "Error: Could not open output file: " << out_file_path << std::endl;
+        return 5;
+    }
+    out_file.write(out_data.c_str(), out_data.length());
+    out_file.close();
+
+    std::cout << "File " << action << "ed successfully!" << std::endl;
+    return 0;
+}
